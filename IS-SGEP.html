@@ -34,9 +34,7 @@
             </div>
             <div id='search-options' class='search-options'>
                 <div id='banner'>Основной опросный лист:</div>
-                <div class='left'><span
-                        title='Моноблочные инверторы нельзя подключать больше двух в параллель, модульные инвертора можно собирать в систему до 30шт. Инвертор может быть с одним входом DC и возможностью работать с байпасам или со встроенным вторым входом AC для подключения сети помимо основного входа DC.'>Тип
-                        инверторной системы:</span>
+                <div class='left'><span>Тип инверторной системы <img src='round_question_icon_132763.svg' width='11' height='11' alt='round_question_icon' title='Моноблочные инверторы нельзя подключать больше двух в параллель, модульные инвертора можно собирать в систему до 30шт. Инвертор может быть с одним входом DC и возможностью работать с байпасам или со встроенным вторым входом AC для подключения сети помимо основного входа DC.'></span>
                     <select name='text' id=typeInverterSystem required tabindex='1'>
                         <option value=0 disabled>-</option>
                         <option value='monoBlockBP'>Моноблок</option>
@@ -46,9 +44,7 @@
                     </select>
                 </div>
                 
-                <div class='left'><span
-                        title='Быстродействующий семисторонний байпас осуществляет переключение на резервное питание в случаи выхода основного питания за приделы уставок'>
-                        Наличие статического байпаса</span>
+                <div class='left'><span>Наличие статического байпаса <img src='round_question_icon_132763.svg' width='11' height='11' alt='round_question_icon' title='Быстродействующий семисторонний байпас осуществляет переключение на резервное питание в случаи выхода основного питания за приделы уставок'></span>
                     <select name='text' id='bypass' required tabindex='2'>
                         <option value=0 disabled>-</option>
                         <option value='no'>Нет</option>
@@ -56,8 +52,7 @@
                     </select>
                 </div>
 
-                <div class='left'><span title='Номинальное, входное напряжение постоянного тока инвертора'>
-                        Входное напряжение DC</span>
+                <div class='left'><span>Входное напряжение DC <img src='round_question_icon_132763.svg' width='11' height='11' alt='round_question_icon' title='Номинальное, входное напряжение постоянного тока инвертора'></span>
                     <select name='text' id=DсInputVoltage required tabindex='3'>
                         <option value=0 disabled>-</option>
                         <option value='24'>24В</option>
@@ -67,8 +62,7 @@
                     </select>
                 </div>
 
-                <div class='left'><span title='Номинальное, выходное напряжение переменного тока инвертора'>
-                        Выходное напряжение AC</span>
+                <div class='left'><span>Выходное напряжение AC <img src='round_question_icon_132763.svg' width='11' height='11' alt='round_question_icon' title='Номинальное, выходное напряжение переменного тока инвертора'></span>
                     <select name='text' id=outputVoltage required tabindex='4'>
                         <option value=0 disabled>-</option>
                         <option value='220'>220(230)В</option>
@@ -76,8 +70,7 @@
                     </select>
                 </div>
 
-                <div class='left'><span title='Мощность нагрузки, которая будет подключатся к инвертору'>
-                        Мощность нагрузки</span>
+                <div class='left'><span>Мощность нагрузки <img src='round_question_icon_132763.svg' width='11' height='11' alt='round_question_icon' title='Мощность нагрузки, которая будет подключатся к инвертору'></span>
                     <input id=loadPower type='number' required min='0' max='75000' step='1' size='6' tabindex='5'>
                     <select name='text' id=powerType required tabindex='6'>
                         <option value=0 disabled>-</option>
@@ -86,15 +79,12 @@
                     </select>
                 </div>
 
-                <div class='left'><span title='Коэффициент мощности cos(&#966;)'>
-                        Коэффициент мощности cos(&#966;) = </span>
+                <div class='left'><span>Коэффициент мощности <img src='round_question_icon_132763.svg' width='11' height='11' alt='round_question_icon' title='Коэффициент мощности равен отношению потребляемой электроприёмником активной мощности к полной мощности'> cos(&#966;)  = </span>
                     <input id='powerFactor' type='number' required min='0.5' max='1' step='0.01' size='4' tabindex='7'>
                 </div>
 
                 <div class='left'>
-                    <span
-                        title='Варианты установки контроллера для SNMP, ModBus и визуального мониторинга: в отдельном корпусе 3U, в корпусе инверторной корзины (при наличии свободного слота), в корпусе байпаса (при его наличии), в корпусе для установки на дверь'>
-                        Исполнение контроллера </span>
+                    <span> Исполнение контроллера <img src='round_question_icon_132763.svg' width='11' height='11' alt='round_question_icon' title='Варианты установки контроллера для SNMP, ModBus и визуального мониторинга: в отдельном корпусе 3U, в корпусе инверторной корзины (при наличии свободного слота), в корпусе байпаса (при его наличии), в корпусе для установки на дверь'> </span>
                     <select name='text' id='uku' required tabindex='8'>
                         <option value=0 selected disabled>-</option>
                         <option value=-1>Нет</option>
@@ -107,8 +97,7 @@
 
                 <div class='left justify'>
                     <div>
-                        <span title='Учёт резерва инверторной системы'>
-                            Наличие резервирования</span>
+                        <span >Наличие резервирования <img src='round_question_icon_132763.svg' width='11' height='11' alt='round_question_icon' title='Учёт резерва инверторной системы'></span>
                         <select name='text' id='typeReserve' required tabindex='9'>
                             <option value=0 selected disabled>-</option>
                             <option value=0>Нет</option>
@@ -132,11 +121,11 @@
                     <div id='banner'>Спецификация:</div>
                     <textarea id='resultsName' type="text" readonly></textarea>
                 </div>
-                <div>
+                <!-- <div>
                     <div id='banner'>Состав системы:</div>
-                <textarea id='resultsManager' type="text" readonly></textarea>
+                <textarea id='specificationName' type="text" readonly></textarea>
             </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

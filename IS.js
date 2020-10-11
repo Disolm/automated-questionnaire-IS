@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttonResultEl = document.getElementById('buttonResult');
     const form = document.querySelector('.form');
     const resultsNameEl = document.getElementById('resultsName');
+//    const specificationNameEl = document.getElementById('specificationName');
+
 
     (function clear() {
         typeInverterSystemEl.options[0].selected = true;
