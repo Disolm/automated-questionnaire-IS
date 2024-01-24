@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const typeInverterSystemEl = document.getElementById('typeInverterSystem');
-    const DсInputVoltageEl = document.getElementById('DсInputVoltage');
+    const DcInputVoltageEl = document.getElementById('DсInputVoltage');
     const outputVoltageEl = document.getElementById('outputVoltage');
     const loadPowerEl = document.getElementById('loadPower');
     const powerTypeEl = document.getElementById('powerType');
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     (function clear() {
         typeInverterSystemEl.options[0].selected = true;
         bypassEl.options[0].selected = true;
-        DсInputVoltageEl.options[0].selected = true;
+        DcInputVoltageEl.options[0].selected = true;
         outputVoltageEl.options[0].selected = true;
         loadPowerEl.value = '';
         powerTypeEl.options[0].selected = true;
@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
 
     function typeInverterBlock() {
-        if (typeInverterSystemEl.value == 'monoBlockBP') {
+        if (typeInverterSystemEl.value === 'monoBlockBP') {
             bypassEl.options[2].selected = true; // принудительное значение байпас - да
             bypassEl.setAttribute('disabled', ''); //блокировка выбора байпаса 
-        } else if (typeInverterSystemEl.value == 'monoBlockAC' || typeInverterSystemEl.value == 'moduleAC') {
+        } else if (typeInverterSystemEl.value === 'monoBlockAC' || typeInverterSystemEl.value === 'moduleAC') {
             bypassEl.options[1].selected = true; // принудительное значение байпас - нет
             bypassEl.setAttribute('disabled', ''); //блокировка выбора байпаса 
         } else {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bypassEl.options[0].selected = true; // принудительное значение байпас - "-"
         };
 
-        if (typeInverterSystemEl.value == 'monoBlockBP' || typeInverterSystemEl.value == 'monoBlockAC') {
+        if (typeInverterSystemEl.value === 'monoBlockBP' || typeInverterSystemEl.value === 'monoBlockAC') {
             outputVoltageEl.options[1].selected = true; // принудительное значение выходного напряжения - 220
             outputVoltageEl.setAttribute('disabled', ''); //блокировка выбора выходного напряжения 
             typeReserveEl.options[2].setAttribute('disabled', ''); //блокировка выбора типа резерва - N+1
@@ -54,12 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         };
 
-        if (typeInverterSystemEl.value == 'monoBlockBP' || typeInverterSystemEl.value == 'monoBlockAC') {
+        if (typeInverterSystemEl.value === 'monoBlockBP' || typeInverterSystemEl.value === 'monoBlockAC') {
             ukuEl.options[3].setAttribute('disabled', ''); //блокировка выбора УКУ - Корпус ИК
             ukuEl.options[4].setAttribute('disabled', ''); //блокировка выбора УКУ - Корпус BP
             ukuEl.options[5].setAttribute('disabled', ''); //блокировка выбора УКУ - Корпус D (дверь)
             ukuEl.options[0].selected = true; // принудительное значение УКУ - "-"
-        } else if (typeInverterSystemEl.value == 'moduleAC') {
+        } else if (typeInverterSystemEl.value === 'moduleAC') {
             ukuEl.options[4].setAttribute('disabled', ''); //блокировка выбора УКУ - Корпус BP
             ukuEl.options[0].selected = true; // принудительное значение УКУ - "-"
         } else {
@@ -73,14 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
     typeInverterSystemEl.addEventListener('change', typeInverterBlock);
 
     function bybassBlock() {
-        if (bypassEl.value == 'no') {
+        if (bypassEl.value === 'no') {
             ukuEl.options[4].setAttribute('disabled', ''); //блокировка выбора УКУ - Корпус BP
             ukuEl.options[0].selected = true; // принудительное значение УКУ - "-"
-        } else if (bypassEl.value == 'yes' && outputVoltageEl.value == '380') {
+        } else if (bypassEl.value === 'yes' && outputVoltageEl.value === '380') {
             ukuEl.options[3].setAttribute('disabled', ''); //блокировка выбора УКУ - Корпус ИК
             ukuEl.options[4].setAttribute('disabled', ''); //блокировка выбора УКУ - Корпус BP
             ukuEl.options[0].selected = true; // принудительное значение УКУ - "-"
-        } else if (bypassEl.value == 'yes' && outputVoltageEl.value == '220') {
+        } else if (bypassEl.value === 'yes' && outputVoltageEl.value === '220') {
             ukuEl.options[3].removeAttribute('disabled'); //удаление блокировки выбора УКУ - Корпус ИК
             ukuEl.options[4].removeAttribute('disabled'); //удаление блокировки выбора УКУ - Корпус BP
             ukuEl.options[0].selected = true; // принудительное значение УКУ - "-"
@@ -90,15 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
     bypassEl.addEventListener('change', bybassBlock);
 
     function outputVoltageBlock() {
-        if (outputVoltageEl.value == '380') {
+        if (outputVoltageEl.value === '380') {
             ukuEl.options[3].setAttribute('disabled', '');  //блокировка выбора УКУ - Корпус ИК
             ukuEl.options[4].setAttribute('disabled', ''); //блокировка выбора УКУ - Корпус BP
             ukuEl.options[0].selected = true; // принудительное значение УКУ - "-"
-        } else if (outputVoltageEl.value == '220' && bypassEl.value == 'no') {
+        } else if (outputVoltageEl.value === '220' && bypassEl.value === 'no') {
             ukuEl.options[4].setAttribute('disabled', ''); //блокировка выбора УКУ - Корпус BP
             ukuEl.options[3].removeAttribute('disabled'); //удаление блокировки выбора УКУ - Корпус ИК
             ukuEl.options[0].selected = true; // принудительное значение УКУ - "-"
-        } else if (outputVoltageEl.value == '220' && bypassEl.value == 'yes') {
+        } else if (outputVoltageEl.value === '220' && bypassEl.value === 'yes') {
             ukuEl.options[3].removeAttribute('disabled'); //удаление блокировки выбора УКУ - Корпус ИК
             ukuEl.options[4].removeAttribute('disabled'); //удаление блокировки выбора УКУ - Корпус BP
             ukuEl.options[0].selected = true; // принудительное значение УКУ - "-"
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     outputVoltageEl.addEventListener('change', outputVoltageBlock);
 
     function powerFactorOne() {
-        if (powerTypeEl.value == 'Watt') {
+        if (powerTypeEl.value === 'Watt') {
             powerFactorEl.value = 1;  // принудительное значение cosF = 1
             powerFactorEl.setAttribute('disabled', ''); //блокировка изменения cosF
         } else {
@@ -133,10 +133,10 @@ document.addEventListener('DOMContentLoaded', () => {
         DC_AC_220_220V_1500VA_2U_BP: 66120, // Цена на DC/AC-220/220B-1500BA-2U-ВР с НДС 20%
         DC_AC_220_220V_3000VA_2U_BP: 80400, // Цена на DC/AC-220/220B-3000BA-2U-ВР с НДС 20%
 
-        DC_АС_AC_24_220_220V_1500VA_2U: 89400, // Цена на (DC-АС)/AC-(24-220)/220B-1500BA-2U с НДС 20%
-        DC_АС_AC_4860_220_220V_2500VA_2U: 89400, // Цена на (DC-АС)/AC-(48(60)-220)/220B-2500BA-2U с НДС 20%
-        DC_АС_AC_110_220_220V_2500VA_2U: 89400, // Цена на (DC-АС)/AC-(110-220)/220B-2500BA-2U с НДС 20%
-        DC_АС_AC_220_220_220V_2500VA_2U: 89400, // Цена на (DC-АС)/AC-(220-220)/220B-2500BA-2U с НДС 20%
+        DC_AC_AC_24_220_220V_1500VA_2U: 89400, // Цена на (DC-АС)/AC-(24-220)/220B-1500BA-2U с НДС 20%
+        DC_AC_AC_4860_220_220V_2500VA_2U: 89400, // Цена на (DC-АС)/AC-(48(60)-220)/220B-2500BA-2U с НДС 20%
+        DC_AC_AC_110_220_220V_2500VA_2U: 89400, // Цена на (DC-АС)/AC-(110-220)/220B-2500BA-2U с НДС 20%
+        DC_AC_AC_220_220_220V_2500VA_2U: 89400, // Цена на (DC-АС)/AC-(220-220)/220B-2500BA-2U с НДС 20%
 
         DC_AC_24_220V_1500VA_3U: 71280, // Цена на DC/AC-24/220B-1500BA-3U с НДС 20%
         DC_AC_4860_220V_2500VA_3U: 75120, // Цена на DC/AC-48(60)/220B-2500BA-3U с НДС 20%
@@ -146,13 +146,13 @@ document.addEventListener('DOMContentLoaded', () => {
         Korpus_DC_AC_7500_110_3U: 22080, // Цена на Корпус DC/AC-7500-110-3U с НДС 20%
         Korpus_DC_AC_7500_220_3U: 22080, // Цена на Корпус DC/AC-7500-220-3U с НДС 20%
 
-        DC_АС_AC_24_220_220V_1500VA_3U: 84240, // Цена на (DC-АС)/AC-(24-220)/220B-1500BA-3U с НДС 20%
-        DC_АС_AC_4860_220_220V_2500VA_3U: 84240, // Цена на (DC-АС)/AC-(48(60)-220)/220B-2500BA-3U с НДС 20%
-        DC_АС_AC_110_220_220V_2500VA_3U: 84240, // Цена на (DC-АС)/AC-(110-220)/220B-2500BA-3U с НДС 20%
-        DC_АС_AC_220_220_220V_2500VA_3U: 84240, // Цена на (DC-АС)/AC-(220-220)/220B-2500BA-3U с НДС 20%
-        Korpus_DC_АС_AC_7500_24_4860_3U: 23280, // Цена на Корпус (DC-АС)/AC-7500-24-48(60)-3U с НДС 20%
-        Korpus_DC_АС_AC_7500_110_3U: 23280, // Цена на Корпус (DC-АС)/AC-7500-110-3U с НДС 20%
-        Korpus_DC_АС_AC_7500_220_3U: 23280, // Цена на Корпус (DC-АС)/AC-7500-220-3U с НДС 20%
+        DC_AC_AC_24_220_220V_1500VA_3U: 84240, // Цена на (DC-АС)/AC-(24-220)/220B-1500BA-3U с НДС 20%
+        DC_AC_AC_4860_220_220V_2500VA_3U: 84240, // Цена на (DC-АС)/AC-(48(60)-220)/220B-2500BA-3U с НДС 20%
+        DC_AC_AC_110_220_220V_2500VA_3U: 84240, // Цена на (DC-АС)/AC-(110-220)/220B-2500BA-3U с НДС 20%
+        DC_AC_AC_220_220_220V_2500VA_3U: 84240, // Цена на (DC-АС)/AC-(220-220)/220B-2500BA-3U с НДС 20%
+        Korpus_DC_AC_AC_7500_24_4860_3U: 23280, // Цена на Корпус (DC-АС)/AC-7500-24-48(60)-3U с НДС 20%
+        Korpus_DC_AC_AC_7500_110_3U: 23280, // Цена на Корпус (DC-АС)/AC-7500-110-3U с НДС 20%
+        Korpus_DC_AC_AC_7500_220_3U: 23280, // Цена на Корпус (DC-АС)/AC-7500-220-3U с НДС 20%
 
         BP_24_220B_10kVA_2U: 57000, // Цена на BP-24/220B-10000BA-2U с НДС 20%
         BP_24_220B_20kVA_3U: 67400, // Цена на BP-24/220B-20000BA-3U с НДС 20%
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function searchNumberOfModules(activePowerInverterOneModele, maxPowerLoad) { // поиск количества инверторов с системе
         numberOfModules = 0;
         do { // поиск количества для 220 или 380 (для 380В количество кратно дрём модулям)
-            if (outputVoltageEl.value == '220') {
+            if (outputVoltageEl.value === '220') {
                 numberOfModules += 1;
             } else {
                 numberOfModules += 3;
@@ -195,10 +195,10 @@ document.addEventListener('DOMContentLoaded', () => {
             activePowerInverterSystem = activePowerInverterOneModele * numberOfModules
         } while (activePowerInverterSystem < maxPowerLoad);
 
-        if (typeReserveEl.value != '0') { // учёт резервных модулей  
-            if (outputVoltageEl.value == '220') {
+        if (typeReserveEl.value !== '0') { // учёт резервных модулей
+            if (outputVoltageEl.value === '220') {
                 numberOfModules += +typeReserveEl.value;
-            } else if (outputVoltageEl.value == '380') {
+            } else if (outputVoltageEl.value === '380') {
                 numberOfModules += 3 * +typeReserveEl.value;
             };
         };
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'activePowerInverter': 1000,
                 'fullPowerInverter': 1500,
                 'typeInverter': '(DC-АС)/AC',
-                'priceWithoutVatModule': priceList.DC_АС_AC_24_220_220V_1500VA_3U,
+                'priceWithoutVatModule': priceList.DC_AC_AC_24_220_220V_1500VA_3U,
                 'priceWithoutVatBasket': priceList.Korpus_DC_AC_7500_24_4860_3U,
                 'articleInverter': [],
                 'articleInverterSGEP': 'Арт.15-42422',
@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'activePowerInverter': 2000,
                 'fullPowerInverter': 2500,
                 'typeInverter': '(DC-АС)/AC',
-                'priceWithoutVatModule': priceList.DC_АС_AC_4860_220_220V_2500VA_3U,
+                'priceWithoutVatModule': priceList.DC_AC_AC_4860_220_220V_2500VA_3U,
                 'priceWithoutVatBasket': priceList.Korpus_DC_AC_7500_24_4860_3U,
                 'articleInverter': [],
                 'articleInverterSGEP': 'Арт.15-4486022',
@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'activePowerInverter': 2000,
                 'fullPowerInverter': 2500,
                 'typeInverter': '(DC-АС)/AC',
-                'priceWithoutVatModule': priceList.DC_АС_AC_220_220_220V_2500VA_3U,
+                'priceWithoutVatModule': priceList.DC_AC_AC_220_220_220V_2500VA_3U,
                 'priceWithoutVatBasket': priceList.Korpus_DC_AC_7500_220_3U,
                 'articleInverter': '',
                 'articleInverterSGEP': 'Арт.15-4220',
@@ -320,13 +320,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function getArticle(numberOfModules) {
 
         let art = 0;
-        if (outputVoltageEl.value == '220') {
+        if (outputVoltageEl.value === '220') {
             art = numberOfModules - 1;
-        } else if (outputVoltageEl.value == '380') {
+        } else if (outputVoltageEl.value === '380') {
             art = Math.ceil(numberOfModules / 3) - 1;
         };
-        const artPart1 = parametersInverterModule[typeInverterSystemEl.value][DсInputVoltageEl.value].articleInverterSGEP;
-        const artPart2 = parametersInverterModule[typeInverterSystemEl.value][DсInputVoltageEl.value].articleInverterNumber[outputVoltageEl.value][art];
+        const artPart1 = parametersInverterModule[typeInverterSystemEl.value][DcInputVoltageEl.value].articleInverterSGEP;
+        const artPart2 = parametersInverterModule[typeInverterSystemEl.value][DcInputVoltageEl.value].articleInverterNumber[outputVoltageEl.value][art];
         return artPart1 + artPart2;
     };
 
@@ -338,10 +338,10 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         get fullNameInverter() {
             let voltageNameInverter;
-            if (typeInverterSystemEl.value == 'moduleBP') {
-                voltageNameInverter = `${DсInputVoltageEl.value}/${outputVoltageEl.value}`;
-            } else if (typeInverterSystemEl.value == 'moduleAC') {
-                voltageNameInverter = `(${DсInputVoltageEl.value}-${outputVoltageEl.value})/${outputVoltageEl.value}`
+            if (typeInverterSystemEl.value === 'moduleBP') {
+                voltageNameInverter = `${DcInputVoltageEl.value}/${outputVoltageEl.value}`;
+            } else if (typeInverterSystemEl.value === 'moduleAC') {
+                voltageNameInverter = `(${DcInputVoltageEl.value}-${outputVoltageEl.value})/${outputVoltageEl.value}`
             };
             return `${this.parameterInverterModuleObj.typeInverter}-${voltageNameInverter}В-${this.parameterInverterModuleObj.fullPowerInverter * this.numberOfModules}ВА-${this.heightInverterModule * Math.ceil(this.numberOfModules / 3)}U`;//*3 модуля в корзину
         };
@@ -386,28 +386,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 'activePowerInverter': [1000],
                 'fullPowerInverter': [1500],
                 'articleInverter': ['Арт.15-4242203'],
-                'priceWithoutVAT': [priceList.DC_АС_AC_24_220_220V_1500VA_2U],
+                'priceWithoutVAT': [priceList.DC_AC_AC_24_220_220V_1500VA_2U],
                 'fullNameInverter': ['(DC-АС)/AC-(24-220)/220B-1500BA-2U'],
             },
             '48(60)': {
                 'activePowerInverter': [2000],
                 'fullPowerInverter': [2000],
                 'articleInverter': ['Арт.15-4486022004'],
-                'priceWithoutVAT': [priceList.DC_АС_AC_4860_220_220V_2500VA_2U],
+                'priceWithoutVAT': [priceList.DC_AC_AC_4860_220_220V_2500VA_2U],
                 'fullNameInverter': ['(DC-АС)/AC-(48(60)-220)/220B-2500BA-2U'],
             },
             '110': {
                 'activePowerInverter': [2000],
                 'fullPowerInverter': [2000],
                 'articleInverter': ['Арт.15-411022002'],
-                'priceWithoutVAT': [priceList.DC_АС_AC_110_220_220V_2500VA_2U],
+                'priceWithoutVAT': [priceList.DC_AC_AC_110_220_220V_2500VA_2U],
                 'fullNameInverter': ['(DC-АС)/AC-(110-220)/220B-2500BA-2U'],
             },
             '220': {
                 'activePowerInverter': [2000],
                 'fullPowerInverter': [2000],
                 'articleInverter': ['Арт.15-422022004'],
-                'priceWithoutVAT': [priceList.DC_АС_AC_220_220_220V_2500VA_2U],
+                'priceWithoutVAT': [priceList.DC_AC_AC_220_220_220V_2500VA_2U],
                 'fullNameInverter': ['(DC-АС)/AC-(220-220)/220B-2500BA-2U'],
             },
         },
@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         get inverter() {
             do {
-                if (this.i == this.parameterInverterMonoblocObj.activePowerInverter.length) {
+                if (this.i === this.parameterInverterMonoblocObj.activePowerInverter.length) {
                     return true;
                 };
                 this.powerInverter = this.parameterInverterMonoblocObj.activePowerInverter[this.i];
@@ -506,7 +506,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         get byPass() {
             do {
-                if (this.b == this.parametrBypassObj.fullPowerBypass.length) {
+                if (this.b === this.parametrBypassObj.fullPowerBypass.length) {
                     return true;
                 };
                 this.powerBypass = this.parametrBypassObj.fullPowerBypass[this.b];
@@ -551,25 +551,25 @@ document.addEventListener('DOMContentLoaded', () => {
         numberOfModules = 0;
         let maxPowerLoad = +loadPowerEl.value * +powerFactorEl.value; // максимальная полная потребляемая мощность нагрузки
         let n;
-        if (typeReserveEl.selectedIndex == 5) { // учёт резерва N+N
+        if (typeReserveEl.selectedIndex === 5) { // учёт резерва N+N
             n = 2;
         } else {
             n = 1;
         };
         //проверка, что выбраны все параметры для подбора результата
-        if (typeInverterSystemEl.value == 0) {
+        if (typeInverterSystemEl.value === 0) {
             return resultsNameEl.value = 'Не выбран тип инвертора!';
-        } else if (DсInputVoltageEl.selectedIndex == 0) {
+        } else if (DcInputVoltageEl.selectedIndex === 0) {
             return resultsNameEl.value = 'Не выбрано входное напряжение!';
-        } else if (outputVoltageEl.value == 0) {
+        } else if (outputVoltageEl.value === 0) {
             return resultsNameEl.value = 'Не выбрано выходное напряжение!';
-        } else if (loadPowerEl.value == '' || powerTypeEl.value == 0 || powerFactorEl.value == '') {
+        } else if (loadPowerEl.value === '' || powerTypeEl.value === 0 || powerFactorEl.value === '') {
             return resultsNameEl.value = 'Не указанна мощность нагрузки!';
-        } else if (ukuEl.value == 0) {
+        } else if (ukuEl.value === 0) {
             return resultsNameEl.value = 'Не выбран тип мониторинга!';
-        } else if (typeReserveEl.selectedIndex == 0) {
+        } else if (typeReserveEl.selectedIndex === 0) {
             return resultsNameEl.value = 'Не выбран тип резервирования!';
-        } else if (typeReserveEl.selectedIndex == 5 && bypassEl.value == 'yes' && typeInverterSystemEl.value == 'moduleBP') {
+        } else if (typeReserveEl.selectedIndex === 5 && bypassEl.value === 'yes' && typeInverterSystemEl.value === 'moduleBP') {
             return resultsNameEl.value = 'Байпасы не работа в параллель!';
         };
 
@@ -577,7 +577,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ukuEl.value > 0) {
             const typeUKU = +ukuEl.value;
             var nameUKU;
-            if (DсInputVoltageEl.value == '24' || DсInputVoltageEl.value == '48(60)') {
+            if (DcInputVoltageEl.value === '24' || DcInputVoltageEl.value === '48(60)') {
                 nameUKU = 14;
             } else {
                 nameUKU = 12;
@@ -586,34 +586,34 @@ document.addEventListener('DOMContentLoaded', () => {
             valueUKU = `\n${uku.fullNameUKU}, ${uku.fullArticleUKU} = ${uku.priceUKU}р с НДС 20% -1шт`;
         };
 
-        if (typeInverterSystemEl.value == 'monoBlockBP' || typeInverterSystemEl.value == 'monoBlockAC') { //тип моноблочный инвертор или моноблочный инвертор с сетью
-            const parameterInverterMonoblocObj = parametersInverterMonobloc[typeInverterSystemEl.value][DсInputVoltageEl.value]; //создание объекта с учётом выбранного фильтра: типа инвертора и входного напряжения.
+        if (typeInverterSystemEl.value === 'monoBlockBP' || typeInverterSystemEl.value === 'monoBlockAC') { //тип моноблочный инвертор или моноблочный инвертор с сетью
+            const parameterInverterMonoblocObj = parametersInverterMonobloc[typeInverterSystemEl.value][DcInputVoltageEl.value]; //создание объекта с учётом выбранного фильтра: типа инвертора и входного напряжения.
             const moduleInverter = new ParameterInverterMonoblocCl(parameterInverterMonoblocObj, maxPowerLoad);
             if (moduleInverter.inverter) {
                 return resultsNameEl.value = 'Мощность нагрузки слишком большая для данного инвертора';
             };
             return resultsNameEl.value = `${moduleInverter.fullNameInv}, ${moduleInverter.articleInv} = ${+moduleInverter.priceInv * n}р с НДС 20% -${n}шт${valueUKU}`;
 
-        } else if (typeInverterSystemEl.value == 'moduleBP' || typeInverterSystemEl.value == 'moduleAC') { //тип модульная инверторная система или модульная инверторная система с сетью
+        } else if (typeInverterSystemEl.value === 'moduleBP' || typeInverterSystemEl.value === 'moduleAC') { //тип модульная инверторная система или модульная инверторная система с сетью
             //  changeInverterParameters();
-            const parameterInverterModuleObj = parametersInverterModule[typeInverterSystemEl.value][DсInputVoltageEl.value]; //создание объекта с учётом выбранного фильтра: типа инвертора и входного напряжения.
+            const parameterInverterModuleObj = parametersInverterModule[typeInverterSystemEl.value][DcInputVoltageEl.value]; //создание объекта с учётом выбранного фильтра: типа инвертора и входного напряжения.
             const activePowerInverterOneModele = parameterInverterModuleObj.activePowerInverter;
             searchNumberOfModules(activePowerInverterOneModele, maxPowerLoad);
             const inverterModule = new ParameterInverterModule(parameterInverterModuleObj, numberOfModules);
 
             if (numberOfModules > 30 / n) {
                 return resultsNameEl.value = 'Модулей в ИС не может быть больше 30! Нагрузка слишком большая!';
-            } else if (ukuEl.value == 1 && Number.isInteger(numberOfModules / 3)) {
+            } else if (ukuEl.value === 1 && Number.isInteger(numberOfModules / 3)) {
                 valueUKU = `\nВ инверторной корзине нет свободных слотов для установки УКУ 207.${nameUKU}-I`
             };
 
             let bypassAvailability = '';
-            if (bypassEl.value == 'yes') { // работа с байпасом если он есть в системе
-                const parametrBypassObj = parametrsBypass[outputVoltageEl.value][DсInputVoltageEl.value]; //создание объекта с учётом выбранного фильтр: выходного и входного напряжения 
+            if (bypassEl.value === 'yes') { // работа с байпасом если он есть в системе
+                const parametrBypassObj = parametrsBypass[outputVoltageEl.value][DcInputVoltageEl.value]; //создание объекта с учётом выбранного фильтр: выходного и входного напряжения 
 
-                if (ukuEl.value == 3 && bypassEl.value == 'yes' && outputVoltageEl.value == '220' && parametrBypassObj.fullPowerBypass[0] > 0) { //в байпас с выходом 220В высотой 2U нельзя установить УКУ 207.хх-BP
+                if (ukuEl.value === 3 && bypassEl.value === 'yes' && outputVoltageEl.value === '220' && parametrBypassObj.fullPowerBypass[0] > 0) { //в байпас с выходом 220В высотой 2U нельзя установить УКУ 207.хх-BP
                     parametrBypassObj.fullPowerBypass[0] *= (-1);
-                } else if (ukuEl.value == 3 && bypassEl.value == 'yes' && outputVoltageEl.value == '220' && parametrBypassObj.fullPowerBypass[0] < 0) {
+                } else if (ukuEl.value === 3 && bypassEl.value === 'yes' && outputVoltageEl.value === '220' && parametrBypassObj.fullPowerBypass[0] < 0) {
                 } else if (parametrBypassObj.fullPowerBypass[0] < 0) {
                     parametrBypassObj.fullPowerBypass[0] *= (-1)
                 };
